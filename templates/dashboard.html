@@ -40,7 +40,11 @@
             some mistakes.
           </h6></code>
 
+    {% if plan %}
     <div id="markdown-content">{{ plan }}</div>
+    {% else %}
+    <div id="markdown-content"><em>No itinerary available at the moment.</em></div>
+    {% endif %}
   </div>
 
   <!-- Hotels at Destination -->
@@ -64,46 +68,23 @@
   </div>
   <!-- Elements -->
   <div class="element-container">
-    <!-- Facebook -->
-    <a class="float-element" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//sanjeev02.pythonanywhere.com/"
-      target="_blank">
-      <span>
-        <i class="fa-brands fa-facebook"></i>
-    </a>
+    
 
-    <!-- WhatsApp -->
-    </span>
-    <a class="float-element"
-      href="https://api.whatsapp.com/send?text=Check%20out%20this%20page:%20https://sanjeev02.pythonanywhere.com"
-      target="_blank">
-      <span>
-        <i class="fa-brands fa-whatsapp"></i>
-      </span>
-    </a>
-
-    <!-- Twitter or X -->
-    <a class="float-element"
-      href="https://twitter.com/intent/tweet?text=Check%20out%20this%20page:%20https://sanjeev02.pythonanywhere.com"
-      target="_blank">
-      <span>
-        <i class="fa-brands fa-x-twitter"></i>
-      </span>
-    </a>
-
+    
     <!-- LinkedIn -->
     <a class="float-element"
-      href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//sanjeev02.pythonanywhere.com" target="_blank">
+      href="https://www.linkedin.com/in/ponnaganti-chandini-358295270/" target="_blank">
       <span>
         <i class="fa-brands fa-linkedin"></i>
       </span>
     </a>
 
-    <!-- Telegram -->
+    <!-- instagram -->
     <a class="float-element"
-      href="https://t.me/share?url=https%3A%2F%2Fsanjeev02.pythonanywhere.com%2F&text=Check%20this%20out"
+      href="https://www.instagram.com/anamika162024/"
       target="_blank">
       <span>
-        <i class="fa-brands fa-telegram"></i>
+        <i class="fa-brands fa-instagram"></i>
       </span>
     </a>
     <!-- Download -->
@@ -120,10 +101,10 @@
 <footer class="jumbotron text-center text-white fixed-bottom" style="background-color: #030303;">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(255, 255, 255, 0)">
-    <p>&copy {{now.year}} Copyright</p>
+    <p>&copy {{now.year}} </p>
     <p>
-      Made With 🩷 By
-      <a style="color: #0ed9ddd6; text-decoration: none" href="#">Sanjeev</a>
+      
+      <a style="color: #0ed9ddd6; text-decoration: none" href="#">view</a>
     </p>
   </div>
 </footer>

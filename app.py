@@ -69,35 +69,17 @@ def add_csp_header(response):
     return response
 
 # Weather Data 
-def get_weather_data(api_key: str, location: str, start_date: str, end_date: str) -> dict:
-    """
-    Retrieves weather data from Visual Crossing Weather API for a given location and date range.
-
-    Args:
-        api_key (str): API key for Visual Crossing Weather API.
-        location (str): Location for which weather data is to be retrieved.
-        start_date (str): Start date of the date range in "MM/DD/YYYY" format.
-        end_date (str): End date of the date range in "MM/DD/YYYY" format.
-
-    Returns:
-        dict: Weather data in JSON format.
-
-    Raises:
-        requests.exceptions.RequestException: If there is an error in making the API request.
-    """
-    # Date Formatting as per API "YYYY-MM-DD"
-
-    base_url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}/{start_date}/{end_date}?unitGroup=metric&include=days&key={api_key}&contentType=json"
-
+def get_weather_data(api_key, location, start_date, end_date):
+    url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}/{start_date}/{end_date}?unitGroup=metric&key={api_key}&contentType=json"
     try:
-        response = requests.get(base_url)
+        response = requests.get(url)
         response.raise_for_status()
         data = response.json()
-        # print(json.dumps(data, indent=4, sort_keys=True))
         return data
     except requests.exceptions.RequestException as e:
-        print("Error:", e.__str__)
-        
+        print("Error:", str(e))
+        raise  # This re-raises the exception so the caller can handle it
+
 
 
 @sitemapper.include() # Include the route in the sitemap
@@ -110,11 +92,11 @@ def index():
         The rendered index.html template.
     """
     if request.method == "POST":
-        global source, destination, start_date, end_date
         source = request.form.get("source")
         destination = request.form.get("destination")
         start_date = request.form.get("date")
         end_date = request.form.get("return")
+
         # Calculating the number of days
         no_of_day = (datetime.datetime.strptime(end_date, "%Y-%m-%d") - datetime.datetime.strptime(start_date, "%Y-%m-%d")).days
         # Process the route input here
@@ -133,6 +115,7 @@ def index():
         # print(json.dumps(weather_data, indent=4, sort_keys=True))
         try:
             plan = bard.generate_itinerary(source, destination, start_date, end_date, no_of_day)
+            print(f"DEBUG: Generated plan: {plan}")
         except Exception as e:
             flash("Error in generating the plan. Please try again later.", "danger")
             return redirect(url_for("index"))
@@ -272,5 +255,3 @@ def page_not_found(e):
 @app.context_processor
 def inject_now():
     return {'now': datetime.datetime.now()}
-
-
