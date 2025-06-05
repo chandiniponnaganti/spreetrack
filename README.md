@@ -77,3 +77,7 @@ Visual Crossing Weather API: Sign up for a free account to obtain your API key.
 Google Palm API: Sign up for a free account to obtain your API key.
 
 These keys are required for fetching weather data and generating itinerary suggestions.
+### 📽️ Project Walkthrough
+
+[Click here to watch the walkthrough](https://drive.google.com/file/d/1dt_I3zayXDqolmEhmjubNbkclwyJjLYn/view?usp=drive_link)
+
